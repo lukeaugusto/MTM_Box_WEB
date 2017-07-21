@@ -18,11 +18,10 @@
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,jQuery,CSS,HTML,RWD,Dashboard,Vue,Vue.js,React,React.js">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Clever - Bootstrap 4 Admin Template</title>
+    <title>MTM Box</title>
 
     <!-- Main styles for this application -->
     <link href="css/style.css" rel="stylesheet">
-
 </head>
 
 <!-- BODY options, add following classes to body to change options
@@ -46,10 +45,10 @@
 
 -->
 
-<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<body class="app header-hidden sidebar-hidden aside-menu-hidden aside-menu-hidden">
 
     <!-- User Interface -->
-    <ui-view>Teste</ui-view>
+    <ui-view></ui-view>
 
     <!-- Bootstrap and necessary plugins -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -79,7 +78,23 @@
     <script src="js/controllers.js"></script>
     <script src="js/directives.js"></script>
     <script src="js/translations.js"></script>
+    
+    <!-- FireBase -->
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 
+    <!-- Start Global Variables -->
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCo0cTqIqq8MgAtdVscPqTbZAakA2T9etM",
+            authDomain: "mtm-box.firebaseapp.com",
+            databaseURL: "https://mtm-box.firebaseio.com",
+            projectId: "mtm-box",
+            storageBucket: "mtm-box.appspot.com",
+            messagingSenderId: "56184530107"
+        };
+        firebase.initializeApp(config);
+    </script>
 </body>
 
 </html>
