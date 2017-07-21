@@ -41,9 +41,7 @@
 <!-- <img id="downloadFile" ></img> -->
 <script>
 
-	// List Elements
 	// List Files
-	var preObject = document.getElementById('object');
 	var ulList = document.getElementById('list');
 
 	var dbfile = firebase.database().ref().child('file');
@@ -51,8 +49,7 @@
 	dbfile.on('child_added', snap => {
 		var li = document.createElement('li');
 		li.innerText = snap.val().name;
-		console.log(snap.val());
-		li.setAttribute("downloadUrl", snap.val().downloadUrl);
+		li.setAttribute("url", snap.val().url);
 		li.setAttribute("size", snap.val().size);
 		li.setAttribute("class", 'file');
 		ulList.appendChild(li);
@@ -64,49 +61,11 @@
 		xhr.onload = function(event) {
 			var blob = xhr.response;
 		};
-		xhr.open('GET', 'https://firebasestorage.googleapis.com/v0/b/mtm-box.appspot.com/o/files%2F1619428_775340262495424_1615619256_n.jpg?alt=media&token=9b40a9e7-1139-4a54-8147-d759054afcf0');//$(this).downloadUrl);
+		xhr.open('GET', $(this).url);
 		xhr.send();
 	});
 
-	/*
-    // Download File
-	storageRef.getDownloadURL().then(function(url) {
-
-		// Download Directly
-		var xhr = new XMLHttpRequest();
-		xhr.responseType = 'blob';
-		xhr.onload = function(event) {
-			var blob = xhr.response;
-		};
-		xhr.open('GET', url);
-		xhr.send();
-
-		// Insert into Image
-		var img = document.getElementById('downloadFile');
-		img.src = url;
-
-	}).catch(function(error) {
-		switch (error.code) {
-			case 'storage/object_not_found':
-			// File doesn't exist
-			break;
-
-			case 'storage/unauthorized':
-			// User doesn't have permission to access the object
-			break;
-
-			case 'storage/canceled':
-			// User canceled the upload
-			break;
-
-			case 'storage/unknown':
-			// Unknown error occurred, inspect the server response
-			break;
-		}
-	});
-	*/
     // Store new File
-
     // Get Elements
     var uploader = document.getElementById('uploader');
     var fileButton = document.getElementById('fileButton');
@@ -117,10 +76,10 @@
         var file = e.target.files[0];
 
         // Create Storage Ref
-        var storageRef = firebase.storage().ref('storage/' + file.name);
+        var storageRef = firebase.storage().ref('file/' + file.name);
 
 
-        var task = storageRef.put(file);
+      	var task = storageRef.put(file);
 
         // Update progress bar
         task.on('state_changed', 
@@ -128,6 +87,15 @@
         	function progress(snapshot){
         		var percentage = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
         		uploader.setAttribute('style', style="width: "+percentage+"%");
+        		if(snapshot.downloadURL !== null) {
+					var ref = firebase.database().ref('file/' + file.name.substring(0, file.name.lastIndexOf('.')));
+					ref.set({
+						name: file.name,
+						size: file.size,
+						parent: 0,
+						url: snapshot.downloadURL
+					});
+				}
         	},
 
         	function error(err){
