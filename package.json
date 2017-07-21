@@ -1,11 +1,10 @@
 {
-  "name": "genesis-ui",
-  "version": "1.8.0",
+  "name": "genesisui-ajax",
+  "version": "1.8.2",
   "description": "",
   "main": "index.html",
   "dependencies": {
-    "del": "^2.2.2",
-    "sass": "^1.0.0-beta.2"
+    "del": "^2.2.2"
   },
   "devDependencies": {
     "browser-sync": "^2.16.0",
@@ -13,7 +12,6 @@
     "gulp-bower-src": "^0.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-filter": "^4.0.0",
-    "gulp-find": "0.0.10",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-sass": "^2.3.2",
@@ -22,8 +20,7 @@
     "run-sequence": "^1.2.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Łukasz Holeczek",
   "url": "https://genesisui.com",

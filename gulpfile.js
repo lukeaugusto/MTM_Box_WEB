@@ -68,7 +68,7 @@ gulp.task('copy:bower', function () {
 });
 
 gulp.task('copy:css', function() {
-   return gulp.src('./css/**/*')
+   gulp.src('./css/**/*')
    .pipe(gulp.dest(paths.dist+'/css'));
 });
 
@@ -87,19 +87,14 @@ gulp.task('copy:js', function() {
    .pipe(gulp.dest(paths.dist+'/js'));
 });
 
-gulp.task('copy:views', function() {
-   return gulp.src('./views/**/*')
-   .pipe(gulp.dest(paths.dist+'/views'));
-});
-
 gulp.task('copy:html', function() {
-   return gulp.src('index.html')
+   return gulp.src('./**/*.html')
    .pipe(gulp.dest(paths.dist+'/'));
 });
 
 gulp.task('replace:bower', function(){
     return gulp.src([
-        './dist/**/*.html',
+        './dist/*.html',
         './dist/**/*.js',
     ], {base: './'})
     .pipe(replace(/bower_components+.+(\/[a-z0-9][^/]*\.[a-z0-9]+(\'|\"))/ig, 'js/libs$1'))
@@ -107,7 +102,7 @@ gulp.task('replace:bower', function(){
 });
 
 gulp.task('build:dist', function(callback) {
-    runSequence('clean:dist', 'copy:bower', 'copy:css', 'copy:img', 'copy:fonts', 'copy:js', 'copy:views', 'copy:html', 'replace:bower', callback);
+    runSequence('clean:dist', 'copy:bower', 'copy:css', 'copy:img', 'copy:fonts', 'copy:js', 'copy:html', 'replace:bower', callback);
 });
 
 gulp.task('default', ['serve']);
