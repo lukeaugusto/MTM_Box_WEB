@@ -1,11 +1,3 @@
-
-<!--
- * GenesisUI - Bootstrap 4 Admin Template
- * @version v1.8.4
- * @link https://genesisui.com
- * Copyright (c) 2017 creativeLabs Łukasz Holeczek
- * @license Commercial
- -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,20 +84,12 @@
             cursor: hand;
         }
     </style>
-    <!-- <img id="downloadFile" ></img> -->
-        
 
     <!-- Bootstrap and necessary plugins -->
     <script src="js/libs/jquery.min.js"></script>
     <script src="js/libs/tether.min.js"></script>
     <script src="js/libs/bootstrap.min.js"></script>
     <script src="js/libs/pace.min.js"></script>
-
-
-
-    <!-- GenesisUI main scripts -->
-
-
 
     <!-- FireBase -->
     <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
@@ -143,7 +127,7 @@
             xhr.onload = function(event) {
                 var blob = xhr.response;
             };
-            xhr.open('GET', $(this).url);
+            xhr.open('GET', $(this).attr('url'));
             xhr.send();
         });
 
@@ -194,15 +178,6 @@
             );
         });
     </script>
-
-
-    <!-- Plugins and scripts required by this views -->
-    <script src="js/libs/toastr.min.js"></script>
-    <script src="js/libs/gauge.min.js"></script>
-    <script src="js/libs/moment.min.js"></script>
-    <script src="js/libs/daterangepicker.js"></script>
-
-
 
 </body>
 
